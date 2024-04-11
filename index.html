@@ -31,27 +31,46 @@
     <script>
         function createNewBoard() {
             var table = document.getElementById('grid');
-            table.innerHTML = ''; // Xóa bảng hiện tại
+            
 
             var colors = ['red', '#31baa0'];
             var arrayLabel = [
                 [1, 5, 9, 13, 17],
+                [2, 6, 10, 14, 18],
                 [3, 7, 11, 15, 19],
+                [4, 8, 12, 16, 20],
             ];
-
-            for (var i = 0; i < 2; i++) {
-                var row = table.insertRow(i);
-                for (var j = 0; j < 5; j++) {
-                    var color = colors[Math.floor(Math.random() * colors.length)];
-                    var cell = row.insertCell(j);
-                    cell.textContent = arrayLabel[i][j];
-					cell.style.fontSize = "30px";
-					cell.style.fontWeight = "700";
-					cell.style.color = "white";
-					cell.style.width = "50px";
-					cell.style.height = "50px";
-                    cell.style.backgroundColor = color;
-                }
+            var redCount = 0;
+            var greenCount = 0;
+	    for(var kk=0;kk<10000000;kk++) {
+	    	   table.innerHTML = ''; // Xóa bảng hiện tại
+	    	    redCount = 0;
+            	    greenCount = 0;
+		    for (var i = 0; i < 4; i++) {
+		        var row = table.insertRow(i);
+		        for (var j = 0; j < 5; j++) {
+		            var color = colors[Math.floor(Math.random() * colors.length)];
+		            var cell = row.insertCell(j);
+		            cell.textContent = arrayLabel[i][j];
+						cell.style.fontSize = "30px";
+						cell.style.fontWeight = "700";
+						cell.style.color = "white";
+						cell.style.width = "50px";
+						cell.style.height = "50px";
+		            cell.style.backgroundColor = color;
+		            if (color == 'red') {
+		            	redCount++;
+		            }
+		            else {
+		            	greenCount++;
+		            }
+		        }
+		    }
+		    //console.log('redCount:', redCount, 'greenCount:',greenCount);
+		    if (redCount >= 8 && redCount <= 12) {
+		       //console.log('break->redCount:', redCount, 'greenCount:',greenCount);
+		    	break;
+		    }
             }
         }
         // Tạo bảng ban đầu
